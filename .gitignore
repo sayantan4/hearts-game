@@ -1,0 +1,12 @@
+**.env
+**/__pycache__/**
+**/.idea/**
+scripts/**
+**/.mypy_cache/**
+tags
+local_variables.py
+local_variables.sh
+venv/
+.DS_Store
+dump.rdb
+celerybeat-schedule.db
