@@ -169,7 +169,7 @@ def main():
 	# Label(root, text="Deck").grid(row=5, column=5, sticky=W, pady=10)
 	# deck_display = Label(root, text="Deck is Empty", bg="GREEN",height=10, width=10)
 	# deck_display.grid(row=6, column=5, sticky=W, pady=10)
-	button_clear_deck = Button(root, text='CLEAR DECK ', height=4, width=15, command=clear_deck)
+	# button_clear_deck = Button(root, text='CLEAR DECK ', height=4, width=15, command=clear_deck)
 	root.title("Hearts")
 	b1 = Button(root, text=f"{user.cards[0].color}({user.cards[0].value})", highlightbackground=color_decider(user.cards[0].color),height=10, width=10, command=lambda: click(b1))
 	b2 = Button(root, text=f"{user.cards[1].color}({user.cards[1].value})", highlightbackground=color_decider(user.cards[1].color),height=10, width=10, command=lambda: click(b2))
@@ -185,7 +185,7 @@ def main():
 	b12 = Button(root, text=f"{user.cards[11].color}({user.cards[11].value})", highlightbackground=color_decider(user.cards[11].color), height=10, width=10, command=lambda: click(b12))
 	b13 = Button(root, text=f"{user.cards[12].color}({user.cards[12].value})", highlightbackground=color_decider(user.cards[12].color), height=10, width=10, command=lambda: click(b13))
 
-	button_clear_deck.grid(row=1, column=0,  pady=100)
+	# button_clear_deck.grid(row=1, column=0,  pady=100)
 	b1.grid(row=18, column=5, sticky=W, pady=100)
 	b2.grid(row=18, column=6, sticky=W, pady=20)
 	b3.grid(row=18, column=7, sticky=W, pady=20)
@@ -214,7 +214,7 @@ def main():
 	dict_of_buttons[b12] = user.cards[11]
 	dict_of_buttons[b13] = user.cards[12]
 
-	root.after(5000, backward_process.switch)
+	root.after(4000, backward_process.switch)
 
 	root.mainloop()
 
@@ -475,12 +475,6 @@ def compute():
 	players = [machine1, machine2, machine3, user]
 	random.choice(players).is_turn = True  # starting the game with random player
 	for round in range(1, 14):
-		# if b_user and b_machine1 and b_machine3 and b_machine2:
-		# 	b_user.destroy()
-		# 	b_machine1.destroy()
-		# 	b_machine2.destroy()
-		# 	b_machine3.destroy()
-		# if is_all_buttons_from_deck_removed():
 		player_to_start_round = None
 		no_of_players_played_till_now = 0  # signifies how many players have played in one round.
 		for player in players:
@@ -498,7 +492,7 @@ def compute():
 			turn_display.configure(text=f"It is {player.name} turn")
 			turn_display.update()
 			print(player.name)
-			time.sleep(5)
+			time.sleep(2)
 			# import ipdb;ipdb.set_trace()
 			if player.type == "User":
 				main_loop.switch()
@@ -523,19 +517,19 @@ def compute():
 		for player in cards_on_play:
 			player_with_first_card = player
 			break
-		# import ipdb;ipdb.set_trace()
+
 		# Identifying which is the player with highest rank
 		color, max_rank = cards_on_play[player_with_first_card]
 		player_with_highest_card = player_with_first_card
 		for player in cards_on_play:
 			if cards_on_play[player][0] == color:
-				if cards_on_play[player][1] > max_rank:
+				if int(cards_on_play[player][1]) > int(max_rank):
 					max_rank = cards_on_play[player][1]
 					player_with_highest_card = player
 
 		# Calculating points for the highest player
 		points = 0
-		import ipdb;ipdb.set_trace()
+
 		for player in cards_on_play:
 			if cards_on_play[player][0] == 'hearts':
 				points = points + 1
@@ -550,6 +544,7 @@ def compute():
 				player.is_turn = True
 
 		# displaying points of each player
+		print (cards_on_play)
 		for player in players:
 			print(f'{player.name} ->  {player.points} (after round {round})/n')
 
