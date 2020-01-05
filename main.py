@@ -124,6 +124,7 @@ def click(number):
 			number.destroy()
 			b_user = Button(root, text=f"{cards.color}({cards.value})", highlightbackground=color_decider(cards.color),height=10, width=10)
 			b_user.grid(row=8, column=ROW, sticky=W, pady=10)
+			b_user.update()
 			backward_process.switch()
 
 
@@ -404,14 +405,17 @@ def first_turn(player, round):
 		b_machine1 = Button(root, text=f"{card.color}({card.value})", highlightbackground=color_decider(card.color),
 						height=10, width=10)
 		b_machine1.grid(row=8, column=ROW, sticky=W, pady=10)
+		b_machine1.update()
 	if player.id == 2:
 		b_machine2 = Button(root, text=f"{card.color}({card.value})", highlightbackground=color_decider(card.color),
 						height=10, width=10)
 		b_machine2.grid(row=8, column=ROW, sticky=W, pady=10)
+		b_machine2.update()
 	if player.id == 3:
 		b_machine3 = Button(root, text=f"{card.color}({card.value})", highlightbackground=color_decider(card.color),
 						height=10, width=10)
 		b_machine3.grid(row=8, column=ROW, sticky=W, pady=10)
+		b_machine3.update()
 
 	player.cards.remove(card)
 
@@ -438,18 +442,23 @@ def on_the_way(player):
 	global ROW
 	ROW = ROW + 1
 	cards_on_play[f'{player.name}'] = [f'{card.color}', f'{card.rank}']
+	# import ipdb;
+	# ipdb.set_trace()
 	if player.id == 1:
 		b_machine1 = Button(root, text=f"{card.color}({card.value})", highlightbackground=color_decider(card.color),
 						height=10, width=10)
 		b_machine1.grid(row=8, column=ROW, sticky=W, pady=10)
+		b_machine1.update()
 	if player.id == 2:
 		b_machine2 = Button(root, text=f"{card.color}({card.value})", highlightbackground=color_decider(card.color),
 						height=10, width=10)
 		b_machine2.grid(row=8, column=ROW, sticky=W, pady=10)
+		b_machine2.update()
 	if player.id == 3:
 		b_machine3 = Button(root, text=f"{card.color}({card.value})", highlightbackground=color_decider(card.color),
 						height=10, width=10)
 		b_machine3.grid(row=8, column=ROW, sticky=W, pady=10)
+		b_machine3.update()
 
 	player.cards.remove(card)
 
@@ -480,7 +489,7 @@ def compute():
 		player = player_to_start_round
 		while no_of_players_played_till_now < 5:
 			if no_of_players_played_till_now == 4:
-				time.sleep(7)
+				time.sleep(5)
 				b_user.destroy()
 				b_machine1.destroy()
 				b_machine2.destroy()
@@ -488,6 +497,7 @@ def compute():
 				break
 			turn_display.configure(text=f"It is {player.name} turn")
 			turn_display.update()
+			print(player.name)
 			time.sleep(5)
 			# import ipdb;ipdb.set_trace()
 			if player.type == "User":
@@ -525,21 +535,19 @@ def compute():
 
 		# Calculating points for the highest player
 		points = 0
-		# import ipdb;ipdb.set_trace()
+		import ipdb;ipdb.set_trace()
 		for player in cards_on_play:
 			if cards_on_play[player][0] == 'hearts':
 				points = points + 1
-			elif cards_on_play[player][0] == 'spades' and cards_on_play[player][1] == 12:
+			elif cards_on_play[player][0] == 'spades' and int(cards_on_play[player][1]) == 12:
 				points = points + 13
 		# time.sleep(7)
 		ROW = 8
 		# assigning points to players and deciding who will start next
 		for player in players:
 			if player.name == player_with_highest_card:
-				player.points = points
+				player.points = player.points + points
 				player.is_turn = True
-			else:
-				player.points = 0
 
 		# displaying points of each player
 		for player in players:
