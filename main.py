@@ -16,8 +16,9 @@ b_machine1 =None
 b_machine2 = None
 b_machine3 = None
 button_clear_deck = None
+winner_display = None
 dict_of_buttons = dict()
-ROW = 8
+ROW = 1
 
 root = Tk()
 
@@ -161,44 +162,50 @@ def main():
 	global user_cards
 	global dict_of_buttons
 	global button_clear_deck
+	global winner_display
 	root.configure(background='Blue')
+	points_text = "BOB -> 0, Lisa -> 0, Andy -> 0, Your -> 0"
 	turn_display = Label(root, text="TURN", bg ="RED", height=5, width=15)
-	turn_display.grid(row=0, column=0, sticky=W, pady=2)
-	points_display = Label(root, text="POINTS", bg ="RED", height=5, width=15)
-	# points_display.grid(row=0, column=0, sticky=W, pady=2)
+	turn_display.grid(row=0, column=0, pady=2)
+	points_display = Label(root, text=points_text, bg="GREEN", height=10, width=32)
+	points_display.grid(row=2, column=0, pady=2)
+	winner_display = Label(root, text="WINNER ?", bg ="RED", height=5, width=15)
+	winner_display.grid(row=0, column=8, pady=10, padx=10)
+
 	# Label(root, text="Deck").grid(row=5, column=5, sticky=W, pady=10)
 	# deck_display = Label(root, text="Deck is Empty", bg="GREEN",height=10, width=10)
 	# deck_display.grid(row=6, column=5, sticky=W, pady=10)
 	# button_clear_deck = Button(root, text='CLEAR DECK ', height=4, width=15, command=clear_deck)
 	root.title("Hearts")
-	b1 = Button(root, text=f"{user.cards[0].color}({user.cards[0].value})", highlightbackground=color_decider(user.cards[0].color),height=10, width=10, command=lambda: click(b1))
-	b2 = Button(root, text=f"{user.cards[1].color}({user.cards[1].value})", highlightbackground=color_decider(user.cards[1].color),height=10, width=10, command=lambda: click(b2))
-	b3 = Button(root, text=f"{user.cards[2].color}({user.cards[2].value})", highlightbackground=color_decider(user.cards[2].color),height=10, width=10, command=lambda: click(b3))
-	b4 = Button(root, text=f"{user.cards[3].color}({user.cards[3].value})", highlightbackground=color_decider(user.cards[3].color),height=10, width=10, command=lambda: click(b4))
-	b5 = Button(root, text=f"{user.cards[4].color}({user.cards[4].value})", highlightbackground=color_decider(user.cards[4].color),height=10, width=10, command=lambda: click(b5))
-	b6 = Button(root, text=f"{user.cards[5].color}({user.cards[5].value})", highlightbackground=color_decider(user.cards[5].color),height=10, width=10, command=lambda: click(b6))
-	b7 = Button(root, text=f"{user.cards[6].color}({user.cards[6].value})", highlightbackground=color_decider(user.cards[6].color),height=10, width=10, command=lambda: click(b7))
-	b8 = Button(root, text=f"{user.cards[7].color}({user.cards[7].value})", highlightbackground=color_decider(user.cards[7].color),height=10, width=10, command=lambda: click(b8))
-	b9 = Button(root, text=f"{user.cards[8].color}({user.cards[8].value})", highlightbackground=color_decider(user.cards[8].color),height=10, width=10, command=lambda: click(b9))
-	b10 = Button(root, text=f"{user.cards[9].color}({user.cards[9].value})", highlightbackground=color_decider(user.cards[9].color), height=10, width=10, command=lambda: click(b10))
-	b11 = Button(root, text=f"{user.cards[10].color}({user.cards[10].value})", highlightbackground=color_decider(user.cards[10].color), height=10, width=10, command=lambda: click(b11))
-	b12 = Button(root, text=f"{user.cards[11].color}({user.cards[11].value})", highlightbackground=color_decider(user.cards[11].color), height=10, width=10, command=lambda: click(b12))
-	b13 = Button(root, text=f"{user.cards[12].color}({user.cards[12].value})", highlightbackground=color_decider(user.cards[12].color), height=10, width=10, command=lambda: click(b13))
+	b1 = Button(root, text=f"{user.cards[0].color}({user.cards[0].value})", highlightbackground=color_decider(user.cards[0].color),height=10, width=9, command=lambda: click(b1))
+	b2 = Button(root, text=f"{user.cards[1].color}({user.cards[1].value})", highlightbackground=color_decider(user.cards[1].color),height=10, width=9, command=lambda: click(b2))
+	b3 = Button(root, text=f"{user.cards[2].color}({user.cards[2].value})", highlightbackground=color_decider(user.cards[2].color),height=10, width=9, command=lambda: click(b3))
+	b4 = Button(root, text=f"{user.cards[3].color}({user.cards[3].value})", highlightbackground=color_decider(user.cards[3].color),height=10, width=9, command=lambda: click(b4))
+	b5 = Button(root, text=f"{user.cards[4].color}({user.cards[4].value})", highlightbackground=color_decider(user.cards[4].color),height=10, width=9, command=lambda: click(b5))
+	b6 = Button(root, text=f"{user.cards[5].color}({user.cards[5].value})", highlightbackground=color_decider(user.cards[5].color),height=10, width=9, command=lambda: click(b6))
+	b7 = Button(root, text=f"{user.cards[6].color}({user.cards[6].value})", highlightbackground=color_decider(user.cards[6].color),height=10, width=9, command=lambda: click(b7))
+	b8 = Button(root, text=f"{user.cards[7].color}({user.cards[7].value})", highlightbackground=color_decider(user.cards[7].color),height=10, width=9, command=lambda: click(b8))
+	b9 = Button(root, text=f"{user.cards[8].color}({user.cards[8].value})", highlightbackground=color_decider(user.cards[8].color),height=10, width=9, command=lambda: click(b9))
+	b10 = Button(root, text=f"{user.cards[9].color}({user.cards[9].value})", highlightbackground=color_decider(user.cards[9].color), height=10, width=9, command=lambda: click(b10))
+	b11 = Button(root, text=f"{user.cards[10].color}({user.cards[10].value})", highlightbackground=color_decider(user.cards[10].color), height=10, width=9, command=lambda: click(b11))
+	b12 = Button(root, text=f"{user.cards[11].color}({user.cards[11].value})", highlightbackground=color_decider(user.cards[11].color), height=10, width=9, command=lambda: click(b12))
+	b13 = Button(root, text=f"{user.cards[12].color}({user.cards[12].value})", highlightbackground=color_decider(user.cards[12].color), height=10, width=9, command=lambda: click(b13))
 
 	# button_clear_deck.grid(row=1, column=0,  pady=100)
-	b1.grid(row=18, column=5, sticky=W, pady=100)
-	b2.grid(row=18, column=6, sticky=W, pady=20)
-	b3.grid(row=18, column=7, sticky=W, pady=20)
-	b4.grid(row=18, column=8, sticky=W, pady=10)
-	b5.grid(row=18, column=9, sticky=W, pady=10)
-	b6.grid(row=18, column=10, sticky=W, pady=10)
-	b7.grid(row=18, column=11, sticky=W, pady=10)
-	b8.grid(row=18, column=12, sticky=W, pady=10)
-	b9.grid(row=18, column=13, sticky=W, pady=10)
-	b10.grid(row=18, column=14, sticky=W, pady=10)
-	b11.grid(row=18, column=15, sticky=W, pady=10)
-	b12.grid(row=18, column=16, sticky=W, pady=10)
-	b13.grid(row=18, column=17, sticky=W, pady=10)
+	row_of_cards_for_user = 30
+	b1.grid(row=row_of_cards_for_user, column=0, sticky=W, pady=10)
+	b2.grid(row=row_of_cards_for_user, column=1, sticky=W, pady=10)
+	b3.grid(row=row_of_cards_for_user, column=2, sticky=W, pady=20)
+	b4.grid(row=row_of_cards_for_user, column=3, sticky=W, pady=10)
+	b5.grid(row=row_of_cards_for_user, column=4, sticky=W, pady=10)
+	b6.grid(row=row_of_cards_for_user, column=5, sticky=W, pady=10)
+	b7.grid(row=row_of_cards_for_user, column=6, sticky=W, pady=10)
+	b8.grid(row=row_of_cards_for_user, column=7, sticky=W, pady=10)
+	b9.grid(row=row_of_cards_for_user, column=8, sticky=W, pady=10)
+	b10.grid(row=row_of_cards_for_user, column=9, sticky=W, pady=10)
+	b11.grid(row=row_of_cards_for_user, column=10, sticky=W, pady=10)
+	b12.grid(row=row_of_cards_for_user, column=11, sticky=W, pady=10)
+	b13.grid(row=row_of_cards_for_user, column=12, sticky=W, pady=10)
 
 	dict_of_buttons[b1] = user.cards[0]
 	dict_of_buttons[b2] = user.cards[1]
@@ -472,8 +479,11 @@ def compute():
 	global b_machine3
 	global b_machine2
 	global ROW
+	global points_display
+	global winner_display
 	players = [machine1, machine2, machine3, user]
 	random.choice(players).is_turn = True  # starting the game with random player
+	points_of_each_user = dict()
 	for round in range(1, 14):
 		player_to_start_round = None
 		no_of_players_played_till_now = 0  # signifies how many players have played in one round.
@@ -536,17 +546,27 @@ def compute():
 			elif cards_on_play[player][0] == 'spades' and int(cards_on_play[player][1]) == 12:
 				points = points + 13
 		# time.sleep(7)
-		ROW = 8
+		ROW = 1
 		# assigning points to players and deciding who will start next
+		# points_display_text = ''
 		for player in players:
 			if player.name == player_with_highest_card:
 				player.points = player.points + points
 				player.is_turn = True
+			points_of_each_user[player.name] = player.points
+
 
 		# displaying points of each player
-		print (cards_on_play)
+
+		print(cards_on_play)
+
+		points_display_text = f"BOB -> {points_of_each_user['BOB']}, Lisa -> {points_of_each_user['Lisa']}, Andy -> {points_of_each_user['Andy']}, Your -> {points_of_each_user['YOUR']}"
+		points_display.configure(text=points_display_text)
+		points_display.update()
 		for player in players:
 			print(f'{player.name} ->  {player.points} (after round {round})/n')
+
+
 
 		cards_on_play.clear()
 		# display_deck()
@@ -559,12 +579,17 @@ def compute():
 	MIN = 30
 	winner = None
 	for player in players:
+		if player.points == 26:
+			winner = player.name
+			break
 		if MIN > player.points:
 			MIN = player.points
 			winner = player.name
 
 	print(f"{winner} is the Winner")
 
+	winner_display.configure(text=f'Winner is {winner}')
+	winner_display.update()
 	main_loop.switch()
 
 
